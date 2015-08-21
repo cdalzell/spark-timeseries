@@ -196,6 +196,13 @@ object DateTimeIndex {
   /**
    * Create a UniformDateTimeIndex with the given start time, number of periods, and frequency.
    */
+  def uniform(start: Long, periods: Int, frequency: Frequency): UniformDateTimeIndex = {
+    new UniformDateTimeIndex(start, periods, frequency)
+  }
+
+  /**
+   * Create a UniformDateTimeIndex with the given start time, number of periods, and frequency.
+   */
   def uniform(start: DateTime, periods: Int, frequency: Frequency): UniformDateTimeIndex = {
     new UniformDateTimeIndex(start.getMillis, periods, frequency)
   }
