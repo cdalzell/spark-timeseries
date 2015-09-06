@@ -17,7 +17,7 @@ package com.cloudera.finance.examples
 
 import breeze.linalg._
 
-import com.cloudera.finance.YahooParser
+import com.cloudera.finance.parsers.YahooParser
 import com.cloudera.finance.Util._
 import com.cloudera.sparkts._
 import com.cloudera.sparkts.DateTimeIndex._
