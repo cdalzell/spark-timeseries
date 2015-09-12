@@ -43,7 +43,7 @@ object MonteCarloValueAtRiskExample {
 
 
     def loadTS(inputDir: String, lower: DateTime, upper: DateTime): TimeSeriesRDD = {
-      val histories = YahooParser.yahooFiles(instrumentsDir, sc)
+      val histories = YahooParser.loadFromCSVFiles(instrumentsDir, sc)
       histories.cache()
       val start = histories.map(_.index.first).takeOrdered(1).head
       val end = histories.map(_.index.last).top(1).head

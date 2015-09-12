@@ -16,7 +16,15 @@
 package com.cloudera.finance.parsers
 
 import com.cloudera.sparkts.TimeSeries
+import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD
 
 trait JSONParser extends Parser {
   def jsonStringToTimeSeries(json: String): TimeSeries
+
+  def loadFromJSONFiles(dir: String, sc: SparkContext): RDD[TimeSeries] = {
+    sc.wholeTextFiles(dir).map { case (path, text) =>
+      jsonStringToTimeSeries(text)
+    }
+  }
 }

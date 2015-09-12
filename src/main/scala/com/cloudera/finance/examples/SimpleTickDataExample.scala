@@ -35,7 +35,7 @@ object SimpleTickDataExample {
     val sc = new SparkContext(conf)
 
     // Load and parse the data
-    val seriesByFile: RDD[TimeSeries] = YahooParser.yahooFiles(inputDir, sc)
+    val seriesByFile: RDD[TimeSeries] = YahooParser.loadFromCSVFiles(inputDir, sc)
     seriesByFile.cache()
 
     // Merge the series from individual files into a TimeSeriesRDD

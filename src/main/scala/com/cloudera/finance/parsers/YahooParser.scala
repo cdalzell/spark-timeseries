@@ -24,11 +24,4 @@ import org.joda.time.format.{DateTimeFormat, DateTimeFormatter}
 object YahooParser extends TimestampedCSVParser {
   override protected val dateTimeFormatter: DateTimeFormatter =
     DateTimeFormat.forPattern("yyyy-MM-dd")
-
-  // TODO: figure out what to do with this function
-  def yahooFiles(dir: String, sc: SparkContext): RDD[TimeSeries] = {
-    sc.wholeTextFiles(dir).map { case (path, text) =>
-      csvStringToTimeSeries(text, path.split('/').last)
-    }
-  }
 }

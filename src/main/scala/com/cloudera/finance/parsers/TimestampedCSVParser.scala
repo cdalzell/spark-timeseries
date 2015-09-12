@@ -17,6 +17,8 @@ package com.cloudera.finance.parsers
 
 import com.cloudera.sparkts.TimeSeries
 import com.cloudera.sparkts.TimeSeries._
+import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD
 
 trait TimestampedCSVParser extends Parser {
   private val UTF8_BOM: String = "\uFEFF"
@@ -33,6 +35,12 @@ trait TimestampedCSVParser extends Parser {
     }.reverse
 
     timeSeriesFromSamples(samples, labels)
+  }
+
+  def loadFromCSVFiles(dir: String, sc: SparkContext): RDD[TimeSeries] = {
+    sc.wholeTextFiles(dir).map { case (path, text) =>
+      csvStringToTimeSeries(text, path.split('/').last)
+    }
   }
 
   private def stripUTF8BOM(s: String): String = {
