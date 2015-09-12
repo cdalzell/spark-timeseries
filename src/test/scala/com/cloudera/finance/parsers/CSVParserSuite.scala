@@ -15,11 +15,14 @@
 
 package com.cloudera.finance.parsers
 
+import com.cloudera.sparkts.{TimeSeries, LocalSparkContext}
+import org.apache.spark.rdd.RDD
+import org.apache.spark.{SparkContext, SparkConf}
 import org.scalatest.{FunSuite, ShouldMatchers}
 
-class CSVParserSuite extends FunSuite with ShouldMatchers {
+class CSVParserSuite extends FunSuite with LocalSparkContext with ShouldMatchers {
   test("CSV Parser - Google Finance") {
-    val is = getClass.getClassLoader.getResourceAsStream("GOOG.csv")
+    val is = getClass.getClassLoader.getResourceAsStream("datafiles/google-finance/GOOG.csv")
     val lines = scala.io.Source.fromInputStream(is).getLines().toArray
     val text = lines.mkString("\n")
     val ts = GoogleParser.csvStringToTimeSeries(text)
@@ -28,7 +31,7 @@ class CSVParserSuite extends FunSuite with ShouldMatchers {
   }
 
   test("CSV Parser - Quandl Finance") {
-    val is = getClass.getClassLoader.getResourceAsStream("WIKI-DATA.csv")
+    val is = getClass.getClassLoader.getResourceAsStream("datafiles/quandl/WIKI-DATA.csv")
     val lines = scala.io.Source.fromInputStream(is).getLines().toArray
     val text = lines.mkString("\n")
     val ts = QuandlParser.csvStringToTimeSeries(text)
@@ -37,11 +40,20 @@ class CSVParserSuite extends FunSuite with ShouldMatchers {
   }
 
   test("CSV Parser - Yahoo Finance") {
-    val is = getClass.getClassLoader.getResourceAsStream("YHOO.csv")
+    val is = getClass.getClassLoader.getResourceAsStream("datafiles/yahoo-finance/YHOO.csv")
     val lines = scala.io.Source.fromInputStream(is).getLines().toArray
     val text = lines.mkString("\n")
     val ts = YahooParser.csvStringToTimeSeries(text)
 
     ts.data.rows should be (lines.length - 1)
+  }
+
+  test("CSV Parser - File Loader - Google Finance") {
+    val dir = "datafiles/google-finance/"
+    val conf = new SparkConf().setMaster("local").setAppName(getClass.getName)
+
+    sc = new SparkContext(conf)
+
+    val seriesByFile: RDD[TimeSeries] = GoogleParser.loadFromCSVFiles(dir, sc)
   }
 }
