@@ -33,8 +33,8 @@ trait TimestampedCSVParser extends Parser {
 
       (dt, tokens.tail.map(parseDouble(_)))
     }.reverse
-
-    timeSeriesFromSamples(samples, labels)
+    
+    timeSeriesFromIrregularSamples(samples, labels)
   }
 
   def loadFromCSVFiles(dir: String, sc: SparkContext): RDD[TimeSeries] = {
