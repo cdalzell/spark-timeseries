@@ -39,6 +39,6 @@ object QuandlParser extends TimestampedCSVParser with JSONParser {
       (dt, quote.tail.map(n => parseDouble(n.toString())) toArray)
     }.reverse
 
-    timeSeriesFromSamples(samples, labels)
+    timeSeriesFromIrregularSamples(samples, labels)
   }
 }
