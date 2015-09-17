@@ -1,7 +1,7 @@
 ## Google Finance Historical Data
 
-Daily GOOG quotes retrieved From Google Finance on 8/4/15, saved as GOOG.csv  
-Daily AAPL quotes retrieved From Google Finance on 9/16/15, saved as AAPL.csv
+Daily GOOG quotes retrieved from Google Finance on 8/4/15, saved as GOOG.csv  
+Daily AAPL quotes retrieved from Google Finance on 9/16/15, saved as AAPL.csv
 
 ## Quandl Wiki EOD Stock Prices Historical Data
 
@@ -11,4 +11,5 @@ I am unsure if Quandl's premium data feeds have the same format.
 
 ## Yahoo Finance Historical Data
 
-Retrieved From Yahoo Finance at 7:30pm ET on 7/29/15, saved as YHOO.csv
+Daily YHOO quotes retrieved from Yahoo Finance on 7/29/15, saved as YHOO.csv  
+Daily MSFT quotes retrieved from Yahoo Finance on 9/16/15, saved as MSFT.csv
