@@ -1,6 +1,7 @@
 ## Google Finance Historical Data
 
-Retrieved From Google Finance at 8:05pm ET on 8/4/15, saved as GOOG.csv
+Daily GOOG quotes retrieved From Google Finance on 8/4/15, saved as GOOG.csv  
+Daily AAPL quotes retrieved From Google Finance on 9/16/15, saved as AAPL.csv
 
 ## Quandl Wiki EOD Stock Prices Historical Data
 
